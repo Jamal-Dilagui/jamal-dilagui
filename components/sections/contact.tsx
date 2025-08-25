@@ -28,8 +28,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    value: "jamaldilagui.dev@gmail.com",
-    link: "mailto:jamaldilagui.dev@gmail.com"
+    value: "info@jamaldilagui.com",
+    link: "mailto:info@jamaldilagui.com"
   },
   {
     icon: Phone,
