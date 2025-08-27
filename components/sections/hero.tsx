@@ -114,7 +114,7 @@ export default function Hero() {
               size="lg"
               variant="gradient"
               className="group relative overflow-hidden w-full sm:w-auto"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => window.open('mailto:info@jamaldilagui.com', '_blank')}
             >
               <span className="relative z-10">Get In Touch</span>
               <motion.div

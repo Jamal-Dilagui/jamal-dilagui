@@ -71,6 +71,7 @@ export default function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -83,23 +84,31 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+    setError(null)
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       })
-    }, 3000)
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error || 'Failed to send message')
+      }
+
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+
+      setTimeout(() => {
+        setIsSubmitted(false)
+        setFormData({ name: '', email: '', subject: '', message: '' })
+      }, 3000)
+    } catch (err: any) {
+      setIsSubmitting(false)
+      setError(err.message || 'Something went wrong')
+    }
   }
 
   return (
@@ -209,6 +218,11 @@ export default function Contact() {
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
+                    {error && (
+                      <div className="text-sm text-red-500 bg-red-500/10 border border-red-500/20 rounded p-2">
+                        {error}
+                      </div>
+                    )}
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -239,7 +253,6 @@ export default function Contact() {
                         />
                       </div>
                     </div>
-                    
                     <div>
                       <label htmlFor="subject" className="block text-sm font-medium mb-2">
                         Subject
@@ -254,7 +267,6 @@ export default function Contact() {
                         placeholder="What's this about?"
                       />
                     </div>
-                    
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium mb-2">
                         Message
@@ -269,7 +281,6 @@ export default function Contact() {
                         rows={6}
                       />
                     </div>
-                    
                     <Button
                       type="submit"
                       disabled={isSubmitting}

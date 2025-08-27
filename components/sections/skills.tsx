@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { CheckCircle2, Gauge, Rocket, Search, Smartphone, Wrench, Code2, Sparkles } from 'lucide-react'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -20,52 +21,50 @@ const staggerContainer = {
   }
 }
 
-const skillCategories = [
+const capabilities = [
   {
-    title: "Frontend Technologies",
-    skills: [
-      { name: "React.js", level: 95, color: "from-blue-500 to-blue-600" },
-      { name: "Next.js", level: 90, color: "from-black to-gray-800" },
-      { name: "TypeScript", level: 85, color: "from-blue-600 to-blue-700" },
-      { name: "JavaScript", level: 95, color: "from-yellow-400 to-yellow-500" },
-      { name: "HTML5/CSS3", level: 90, color: "from-orange-500 to-red-500" },
-    ]
+    icon: Code2,
+    title: 'Modern Front‑End Engineering',
+    text: 'Pixel‑perfect, accessible interfaces using React, Next.js, and TypeScript.',
+    benefit: 'Faster delivery and fewer defects with typed components and reusable patterns.'
   },
   {
-    title: "Styling & UI",
-    skills: [
-      { name: "TailwindCSS", level: 90, color: "from-cyan-400 to-cyan-500" },
-      { name: "Sass/SCSS", level: 85, color: "from-pink-500 to-pink-600" },
-      { name: "Bootstrap", level: 80, color: "from-purple-500 to-purple-600" },
-      { name: "Framer Motion", level: 75, color: "from-purple-600 to-purple-700" },
-    ]
+    icon: Gauge,
+    title: 'Performance Optimization',
+    text: 'Core Web Vitals, image optimization, code‑splitting, and caching.',
+    benefit: 'Improved SEO and conversion through faster load and interaction times.'
   },
   {
-    title: "Backend & Tools",
-    skills: [
-      { name: "Node.js", level: 80, color: "from-green-500 to-green-600" },
-      { name: "Git", level: 85, color: "from-orange-600 to-orange-700" },
-      { name: "WordPress", level: 80, color: "from-blue-400 to-blue-500" },
-    ]
+    icon: Search,
+    title: 'SEO & Best Practices',
+    text: 'Semantic markup, structured data, metadata, and clean internal linking.',
+    benefit: 'Better rankings and discoverability for key pages and services.'
   },
   {
-    title: "State Management & Libraries",
-    skills: [
-      { name: "Redux", level: 85, color: "from-purple-500 to-purple-600" },
-      { name: "jQuery", level: 80, color: "from-blue-500 to-blue-600" },
-      { name: "Elementor", level: 75, color: "from-orange-400 to-orange-500" },
-    ]
-  }
+    icon: Smartphone,
+    title: 'Responsive & Mobile‑First',
+    text: 'Fluid layouts, touch targets, and device testing across breakpoints.',
+    benefit: 'Consistent experience that increases engagement on every device.'
+  },
 ]
 
-const techIcons = [
-  { name: "React", icon: "⚛️", color: "hover:bg-blue-100 dark:hover:bg-blue-900/20" },
-  { name: "Next.js", icon: "▲", color: "hover:bg-black dark:hover:bg-white" },
-  { name: "TypeScript", icon: "📘", color: "hover:bg-blue-100 dark:hover:bg-blue-900/20" },
-  { name: "TailwindCSS", icon: "🎨", color: "hover:bg-cyan-100 dark:hover:bg-cyan-900/20" },
-  { name: "Node.js", icon: "🟢", color: "hover:bg-green-100 dark:hover:bg-green-900/20" },
-  { name: "Git", icon: "📝", color: "hover:bg-orange-100 dark:hover:bg-orange-900/20" },
-  { name: "WordPress", icon: "📝", color: "hover:bg-blue-100 dark:hover:bg-blue-900/20" },
+const tooling = [
+  { name: 'Next.js', level: 'Expert' },
+  { name: 'React', level: 'Expert' },
+  { name: 'TypeScript', level: 'Advanced' },
+  { name: 'TailwindCSS', level: 'Advanced' },
+  { name: 'Framer Motion', level: 'Advanced' },
+  { name: 'Node.js', level: 'Intermediate' },
+  { name: 'Git / GitHub', level: 'Advanced' },
+  { name: 'SEO/Analytics', level: 'Advanced' },
+  { name: 'WordPress', level: 'Advanced' },
+  { name: 'Elementor', level: 'Advanced' },
+]
+
+const outcomes = [
+  { icon: Rocket, title: 'Faster Launches', text: 'Lean, predictable delivery with a battle‑tested workflow.' },
+  { icon: Sparkles, title: 'Polished UX', text: 'Micro‑interactions and clarity that build trust and delight.' },
+  { icon: Wrench, title: 'Maintainable Code', text: 'Clean architecture and components that scale with your needs.' },
 ]
 
 export default function Skills() {
@@ -82,103 +81,88 @@ export default function Skills() {
           className="text-center mb-16"
         >
           <motion.h2 variants={fadeInUp} className="text-3xl sm:text-4xl font-bold mb-4">
-            Skills & Technologies
+            Capabilities & Expertise
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            My technical expertise spans across modern web technologies, from frontend frameworks to backend development tools.
+            I help businesses ship fast, high‑quality web experiences that convert. Below is how I deliver measurable value.
           </motion.p>
         </motion.div>
 
-        {/* Tech Stack Icons */}
-        <motion.div
-          variants={fadeInUp}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="mb-16"
-        >
-          <h3 className="text-xl sm:text-2xl font-semibold text-center mb-6 sm:mb-8">Tech Stack</h3>
-          <div className="flex justify-center px-4">
-            <div className="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8 gap-3 sm:gap-4 md:gap-6 max-w-6xl mx-auto">
-              {techIcons.map((tech, index) => (
-                <motion.div
-                  key={tech.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`flex flex-col items-center p-2 sm:p-3 md:p-4 rounded-lg transition-all duration-300 cursor-pointer hover:scale-105 ${tech.color}`}
-                >
-                  <div className="text-xl sm:text-2xl md:text-3xl mb-1 sm:mb-2">{tech.icon}</div>
-                  <span className="text-[10px] sm:text-xs font-medium text-center leading-tight max-w-full truncate">{tech.name}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Skill Categories */}
+        {/* Capability Cards */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 gap-8"
+          className="grid md:grid-cols-2 gap-6"
         >
-          {skillCategories.map((category, categoryIndex) => (
-            <motion.div key={category.title} variants={fadeInUp}>
-              <Card className="card-hover">
-                <CardHeader>
-                  <CardTitle className="text-xl">{category.title}</CardTitle>
+          {capabilities.map((cap, idx) => (
+            <motion.div key={cap.title} variants={fadeInUp} transition={{ delay: idx * 0.05 }}>
+              <Card className="glass-effect card-hover h-full">
+                <CardHeader className="flex flex-row items-start gap-3">
+                  <div className="h-10 w-10 rounded-lg bg-portfolio-light dark:bg-portfolio-dark flex items-center justify-center">
+                    <cap.icon className="h-5 w-5 text-portfolio-primary" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">{cap.title}</CardTitle>
+                    <p className="text-sm text-muted-foreground mt-1">{cap.text}</p>
+                  </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div key={skill.name} className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="font-medium text-sm">{skill.name}</span>
-                        <span className="text-sm text-muted-foreground">{skill.level}%</span>
-                      </div>
-                      <div className="w-full bg-muted rounded-full h-2">
-                        <motion.div
-                          className={`h-2 rounded-full bg-gradient-to-r ${skill.color}`}
-                          initial={{ width: 0 }}
-                          animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-                          transition={{
-                            duration: 1,
-                            delay: (categoryIndex * 0.2) + (skillIndex * 0.1),
-                            ease: "easeOut"
-                          }}
-                        />
-                      </div>
+                <CardContent>
+                  <div className="flex items-center gap-2 text-sm">
+                    <CheckCircle2 className="h-4 w-4 text-portfolio-accent" />
+                    <span className="text-muted-foreground">{cap.benefit}</span>
+                  </div>
+                </CardContent>
+              </Card>
+                </motion.div>
+              ))}
+        </motion.div>
+
+        {/* Outcomes / Value Props */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"
+        >
+          {outcomes.map((o, idx) => (
+            <motion.div key={o.title} variants={fadeInUp} transition={{ delay: idx * 0.05 }}>
+              <Card className="h-full">
+                <CardContent className="p-5 flex items-start gap-3">
+                  <o.icon className="h-5 w-5 text-portfolio-primary mt-0.5" />
+                  <div>
+                    <h3 className="font-semibold">{o.title}</h3>
+                    <p className="text-sm text-muted-foreground mt-1">{o.text}</p>
                     </div>
-                  ))}
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Additional Skills */}
+        {/* Tooling Matrix */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="mt-16 text-center"
+          className="mt-12"
         >
-          <h3 className="text-2xl font-semibold mb-8">Additional Skills</h3>
-          <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
-            {[
-              "Responsive Design", "SEO Optimization", "Performance Optimization", 
-              "Cross-browser Compatibility", "RESTful APIs", "GraphQL", "Testing",
-              "CI/CD", "Docker", "AWS", "Vercel", "Netlify", "Figma", "Adobe XD"
-            ].map((skill, index) => (
-              <motion.span
-                key={skill}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ delay: index * 0.05 }}
-                className="px-4 py-2 bg-muted rounded-full text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
-              >
-                {skill}
-              </motion.span>
-            ))}
+          <h3 className="text-xl sm:text-2xl font-semibold text-center mb-6">Tooling & Technologies</h3>
+          <div className="flex justify-center">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 max-w-3xl">
+              {tooling.map((t, idx) => (
+                <motion.div
+                  key={t.name}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+                  transition={{ delay: idx * 0.05 }}
+                  className="rounded-lg border p-3 flex items-center justify-between bg-background/60"
+                >
+                  <span className="text-sm font-medium">{t.name}</span>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary">{t.level}</span>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

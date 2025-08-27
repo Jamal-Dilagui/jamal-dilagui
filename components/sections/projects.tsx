@@ -193,11 +193,11 @@ export default function Projects() {
                       <Button
                         size="sm"
                         variant="secondary"
-                        onClick={() => window.open(project.liveUrl, '_blank')}
+                        onClick={() => window.open('mailto:info@jamaldilagui.com', '_blank')}
                         className="flex items-center gap-2"
                       >
                         <Eye className="w-4 h-4" />
-                        Live Demo
+                        Work With Me
                       </Button>
                     )}
                     {project.githubUrl && (
@@ -246,17 +246,15 @@ export default function Projects() {
 
                   {/* Action Buttons */}
                   <div className="flex gap-2 pt-2">
-                    {project.liveUrl && (
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => window.open(project.liveUrl, '_blank')}
-                        className="flex items-center gap-2 flex-1"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        View Live
-                      </Button>
-                    )}
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => window.open('mailto:info@jamaldilagui.com', '_blank')}
+                      className="flex items-center gap-2 flex-1"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Hire Me
+                    </Button>
                     {project.githubUrl && (
                       <Button
                         size="sm"
@@ -292,7 +290,7 @@ export default function Projects() {
               <Button
                 size="lg"
                 variant="gradient"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => window.open('mailto:info@jamaldilagui.com', '_blank')}
               >
                 Get In Touch
               </Button>
