@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     if (!smtpHost || !smtpUser || !smtpPass) {
       return NextResponse.json({ error: 'Email service not configured' }, { status: 500 })
     }
-
+    console.log('test');
     const transporter = nodemailer.createTransport({
       host: smtpHost,
       port: smtpPort,
